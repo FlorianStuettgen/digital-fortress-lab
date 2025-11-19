@@ -1,5 +1,5 @@
 # Digital Fortress Lab
-
+![](/assets/photos/test2.jpeg)
 **Digital Fortress Lab** is a self-hosted security and infrastructure lab built on enterprise hardware and operated like a small production network. It is designed, built, and documented end to end by a single operator as a long-term R&D and learning platform.
 
 > ### For recruiters / hiring managers
