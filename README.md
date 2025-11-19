@@ -35,24 +35,32 @@ The environment is built into a rack with structured cabling, patch panels, and 
   - Dell PowerEdge R710 – primary Proxmox host (dual Xeon, 128 GB RAM)
     ![ primary Proxmox host](/assets/photos/Compute1.jpg)
   - Dell EqualLogic FS7610 (2 nodes) – additional compute and storage services
-
+    ![additional compute and storage services](/assets/photos/Compute2.jpg)
 - **Storage**
   - Avid 18-bay chassis with mixed SAS/SATA disks
+     ![18-bay chassis](/assets/photos/Storage1.jpg)
   - EqualLogic-backed storage presented to Proxmox and other services
-
+    ![backed storage presented to Proxmox and other services](/assets/photos/Storage2.jpg)
 - **Network & Management**
   - Dell X1052P 52-port managed switch – core switching and VLAN hub
+     ![core switching and VLAN hub](/assets/photos/switch.jpg)
   - Dual shielded Cat6 patch panels (front + rear) – cable termination and cross-connect
   - OpenGear CM4148 console manager – centralized serial access for network and security devices
+    ![core switching and VLAN hub](/assets/photos/console3.jpg)
   - Rackmount KVM and HP TFT5600 rack console – local VGA/keyboard access
-
+    ![local VGA/keyboard access](/assets/photos/console1.jpg)
+    ![local VGA/keyboard access](/assets/photos/console2.jpg)
 - **Security & Remote Access**
   - Cisco ASA 5510 / 5515-X – perimeter firewalls and zone routing
+    ![perimeter firewalls and zone routing](/assets/photos/sec1.jpg)
+    ![perimeter firewalls and zone routing](/assets/photos/sec3.jpg)
   - SonicWall SRA 4200 – SSL VPN and remote access gateway
-
+    ![SSL VPN and remote access gateway](/assets/photos/sec2.jpg)
 - **Monitoring Node**
   - Panasonic Toughbook CF-30 – runs NST/SELKS and Suricata as a small SOC node
-
+    ![NST/SELKS and Suricata as a small SOC node](/assets/photos/monitor1.jpg)
+    ![NST/SELKS and Suricata as a small SOC node](/assets/photos/monitor2.jpg)
+    
 All devices are cabled through the patch panels into the core switch. Management access is available over a dedicated management VLAN, via serial on the console manager, or locally through the KVM.
 
 ---
