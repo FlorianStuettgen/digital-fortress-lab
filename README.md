@@ -12,11 +12,11 @@
 
 It combines:
 
- Proxmox virtualization
- Dell server and storage platforms
- Cisco ASA and SonicWall security appliances
- VLAN-based segmentation on a managed switch
- Centralized logging and IDS/IPS with NST/SELKS and Suricata
+ - Proxmox virtualization
+ - Dell server and storage platforms
+ - Cisco ASA and SonicWall security appliances
+ - VLAN-based segmentation on a managed switch
+ - Centralized logging and IDS/IPS with NST/SELKS and Suricata
 
 The lab is isolated from production networks and is used to design, test, and operate realistic network and security topologies.
 
