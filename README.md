@@ -31,18 +31,22 @@ The environment is built into a rack with structured cabling, patch panels, and 
 
 ### Core Hardware
 
-- **Compute**
-  - Dell PowerEdge R710 – primary Proxmox host (dual Xeon, 128 GB RAM)
+- **Computing**
+  - Dell PowerEdge R710 
+  - Primary Proxmox host for the build. (Dual Xeon, 128 GB RAM)
     ![](/assets/photos/Compute1.jpg)
   
-  - Dell EqualLogic FS7610 (2 nodes) – additional compute and storage services
-    ![](/assets/photos/Compute2.jpg)
+  - Dell EqualLogic FS7610 (2 nodes) 
+  - Additional Computing & Storage power.
+    ![](/assets/photos/Compute2.png)
   
 - **Storage**
   - Avid 18-bay chassis with mixed SAS/SATA disks
-     ![18-bay chassis](/assets/photos/Storage1.jpg)
+     ![18-bay chassis](/assets/photos/Storage1.png)
+    
   - EqualLogic-backed storage presented to Proxmox and other services
     ![backed storage presented to Proxmox and other services](/assets/photos/Storage2.jpg)
+    
 - **Network & Management**
   - Dell X1052P 52-port managed switch – core switching and VLAN hub
      ![core switching and VLAN hub](/assets/photos/switch.jpg)
