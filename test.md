@@ -26,90 +26,80 @@ This repository details the architecture, implementation, and management of a de
 
 ## At a Glance — Current as of December 2025
 
-<div align="center" style="margin-bottom: 20px; font-style: italic; color: #666;">
-  A concise overview of the lab's key components and their configurations.
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-bottom: 20px;">
+  <div style="width: 300px; padding: 15px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <h4 style="margin-top: 0;">Hypervisor</h4>
+    <p><strong>Spec:</strong> Proxmox VE on Dell R710 (128 GB RAM, dual Xeon)</p>
+    <p><strong>Status:</strong> Stable</p>
+    <p>Core virtualization layer for resource management.</p>
+  </div>
+  <div style="width: 300px; padding: 15px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <h4 style="margin-top: 0;">Storage</h4>
+    <p><strong>Spec:</strong> Dual EqualLogic FS7610 + Avid 18-bay chassis</p>
+    <p><strong>Status:</strong> Redundant</p>
+    <p>Fault-tolerant storage for data reliability.</p>
+  </div>
+  <div style="width: 300px; padding: 15px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <h4 style="margin-top: 0;">Core Switch</h4>
+    <p><strong>Spec:</strong> Dell X1052P — 52-port, full VLAN trunking</p>
+    <p><strong>Status:</strong> L2 Master</p>
+    <p>Central networking hub with Layer 2 features.</p>
+  </div>
+  <div style="width: 300px; padding: 15px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <h4 style="margin-top: 0;">Perimeter</h4>
+    <p><strong>Spec:</strong> Cisco ASA 5510/5515-X + SonicWall SRA 4200</p>
+    <p><strong>Status:</strong> Hardened</p>
+    <p>Boundary security with firewall and access controls.</p>
+  </div>
+  <div style="width: 300px; padding: 15px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <h4 style="margin-top: 0;">SOC Node</h4>
+    <p><strong>Spec:</strong> Panasonic Toughbook → NST/SELKS + Suricata</p>
+    <p><strong>Status:</strong> Live DPI</p>
+    <p>Security operations for packet inspection.</p>
+  </div>
+  <div style="width: 300px; padding: 15px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <h4 style="margin-top: 0;">Network Model</h4>
+    <p><strong>Spec:</strong> Multi-zone, ASA-only L3 routing</p>
+    <p><strong>Status:</strong> Zero Trust–inspired</p>
+    <p>Segmented architecture for enhanced security.</p>
+  </div>
+  <div style="width: 300px; padding: 15px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <h4 style="margin-top: 0;">OOB Management</h4>
+    <p><strong>Spec:</strong> OpenGear CM4148 + rack KVM + HP TFT5600</p>
+    <p><strong>Status:</strong> Always reachable</p>
+    <p>Out-of-band access for management.</p>
+  </div>
 </div>
-
-<details>
-<summary><strong>Hypervisor</strong> — Proxmox VE on Dell R710 (128 GB RAM, dual Xeon)</summary>
-<div style="padding: 10px; background-color: #f9f9f9; border-left: 4px solid #0078d4; border-radius: 4px;">
-  <p><strong>Status:</strong> Stable</p>
-  <p>This core virtualization platform ensures efficient resource allocation and high availability.</p>
-</div>
-</details>
-
-<details>
-<summary><strong>Storage</strong> — Dual EqualLogic FS7610 + Avid 18-bay chassis</summary>
-<div style="padding: 10px; background-color: #f9f9f9; border-left: 4px solid #0078d4; border-radius: 4px;">
-  <p><strong>Status:</strong> Redundant</p>
-  <p>Provides robust, fault-tolerant storage solutions for data integrity and performance.</p>
-</div>
-</details>
-
-<details>
-<summary><strong>Core Switch</strong> — Dell X1052P (52-port, full VLAN trunking)</summary>
-<div style="padding: 10px; background-color: #f9f9f9; border-left: 4px solid #0078d4; border-radius: 4px;">
-  <p><strong>Status:</strong> L2 Master</p>
-  <p>Serves as the central networking hub with advanced Layer 2 capabilities.</p>
-</div>
-</details>
-
-<details>
-<summary><strong>Perimeter</strong> — Cisco ASA 5510/5515-X + SonicWall SRA 4200</summary>
-<div style="padding: 10px; background-color: #f9f9f9; border-left: 4px solid #0078d4; border-radius: 4px;">
-  <p><strong>Status:</strong> Hardened</p>
-  <p>Fortifies the lab's boundaries with enterprise-grade firewall and remote access security.</p>
-</div>
-</details>
-
-<details>
-<summary><strong>SOC Node</strong> — Panasonic Toughbook (NST/SELKS + Suricata)</summary>
-<div style="padding: 10px; background-color: #f9f9f9; border-left: 4px solid #0078d4; border-radius: 4px;">
-  <p><strong>Status:</strong> Live DPI</p>
-  <p>Enables real-time security operations and deep packet inspection.</p>
-</div>
-</details>
-
-<details>
-<summary><strong>Network Model</strong> — Multi-zone, ASA-only L3 routing</summary>
-<div style="padding: 10px; background-color: #f9f9f9; border-left: 4px solid #0078d4; border-radius: 4px;">
-  <p><strong>Status:</strong> Zero Trust–inspired</p>
-  <p>Implements segmented, secure networking principles for enhanced control.</p>
-</div>
-</details>
-
-<details>
-<summary><strong>OOB Management</strong> — OpenGear CM4148 + rack KVM + HP TFT5600</summary>
-<div style="padding: 10px; background-color: #f9f9f9; border-left: 4px solid #0078d4; border-radius: 4px;">
-  <p><strong>Status:</strong> Always reachable</p>
-  <p>Ensures out-of-band access for reliable management and troubleshooting.</p>
-</div>
-</details>
 
 <div align="center" style="margin-top: 30px;">
   <strong>Lab Maturity</strong><br>
-  <progress value="94" max="100" style="width: 60%; height: 24px; border-radius: 4px;"></progress> <span style="font-weight: bold; font-size: 1.1em; margin-left: 10px;">94%</span>
+  <progress value="94" max="100" style="width: 60%; height: 24px; border-radius: 4px; background-color: #e0e0e0;"></progress> <span style="font-weight: bold; font-size: 1.1em; margin-left: 10px;">94%</span>
 </div>
 
 <details>
-<summary><strong>System Architecture Diagram (Mermaid)</strong></summary>
+<summary><strong>System Architecture Overview (Mermaid Diagram)</strong></summary>
 
 ```mermaid
-graph TD
-    A[Hypervisor: Proxmox VE] --> B[Storage: EqualLogic FS7610]
-    A --> C[Core Switch: Dell X1052P]
-    C --> D[Perimeter: Cisco ASA]
-    D --> E[SOC Node: Suricata]
-    A --> F[Network Model: Zero Trust]
-    G[OOB Management: OpenGear] --> A
-    style A fill:#e6f3ff,stroke:#0078d4
-    style B fill:#e6f3ff,stroke:#0078d4
-    style C fill:#e6f3ff,stroke:#0078d4
-    style D fill:#e6f3ff,stroke:#0078d4
-    style E fill:#e6f3ff,stroke:#0078d4
-    style F fill:#e6f3ff,stroke:#0078d4
-    style G fill:#e6f3ff,stroke:#0078d4
-
+graph LR
+    subgraph Core
+        A[Hypervisor<br>Proxmox VE]
+        B[Storage<br>EqualLogic]
+    end
+    subgraph Networking
+        C[Core Switch<br>Dell X1052P] --> D[Perimeter<br>Cisco ASA]
+        D --> E[SOC Node<br>Suricata]
+        F[Network Model<br>Zero Trust]
+    end
+    subgraph Management
+        G[OOB Mgmt<br>OpenGear]
+    end
+    A --> C
+    A --> B
+    G --> A
+    C --> F
+    style Core fill:#f0f8ff,stroke:#0078d4,stroke-width:2px
+    style Networking fill:#f0f8ff,stroke:#0078d4,stroke-width:2px
+    style Management fill:#f0f8ff,stroke:#0078d4,stroke-width:2px
 
 
 
