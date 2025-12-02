@@ -24,6 +24,145 @@ This repository details the architecture, implementation, and management of a de
 > [!NOTE]  
 > Operated in complete isolation from production environments to enable risk-free experimentation with realistic scenarios.
 
+## At a Glance — Current as of December 2025
+
+<div align="center" style="margin-bottom: 20px;">
+  <table style="width: 80%; border-collapse: collapse; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <thead>
+      <tr style="background-color: #f4f4f4;">
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Component</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Specification</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">Hypervisor</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Proxmox VE on Dell R710 (128 GB RAM, dual Xeon)</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Stable ✅</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">Storage</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Dual EqualLogic FS7610 + Avid 18-bay chassis</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Redundant ✅</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">Core Switch</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Dell X1052P — 52-port, full VLAN trunking</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">L2 Master ✅</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">Perimeter</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Cisco ASA 5510/5515-X + SonicWall SRA 4200</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Hardened ✅</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">SOC Node</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Panasonic Toughbook → NST/SELKS + Suricata</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Live DPI ✅</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">Network Model</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Multi-zone, ASA-only L3 routing</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Zero Trust–inspired ✅</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">OOB Management</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">OpenGear CM4148 + rack KVM + HP TFT5600</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Always reachable ✅</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div align="center" style="margin-top: 20px;">
+  <strong>Lab Maturity</strong><br>
+  <progress value="94" max="100" style="width: 50%; height: 20px;"></progress> <span style="font-weight: bold; font-size: 1.2em;">94%</span>
+</div>
+
+<details>
+<summary><strong>Additional Notes</strong></summary>
+<p>
+This snapshot reflects the lab's configuration as of December 2025, emphasizing enterprise-grade components and operational stability. All systems are monitored for uptime and performance.
+</p>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
