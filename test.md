@@ -1,4 +1,6 @@
+<p align="center">
 # Digital Infrastructure Lab
+</p>
 
 <p align="center">
 <img src="/assets/photos/test2.jpeg" alt="Full rack" width="60%"/>
