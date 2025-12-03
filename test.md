@@ -107,23 +107,28 @@ This repository details the architecture, implementation, and management of a de
 
 <summary><strong>Architecture Diagram</strong></summary>
 
-```mermaid
 flowchart LR
-    subgraph core [Core Infrastructure]
-        direction TB
-        A[Hypervisor: Proxmox VE<br>Dell R710] --> B[Storage: Dual EqualLogic<br>FS7610 + Avid Chassis]
+    %% Core Infrastructure
+    subgraph core["Core Infrastructure"]
+        A["Hypervisor: Proxmox VE\nDell R710"] --> B["Storage: Dual EqualLogic\nFS7610 + Avid Chassis"]
     end
-    subgraph networking [Networking & Security]
-        direction TB
-        C[Core Switch: Dell X1052P<br>52-port VLAN] --> D[Perimeter: Cisco ASA<br>+ SonicWall SRA]
-        D --> E[SOC Node: Panasonic Toughbook<br>NST/SELKS + Suricata]
-        C --> F[Network Model: Multi-zone<br>ASA L3 Routing - Zero Trust]
+
+    %% Networking & Security
+    subgraph networking["Networking & Security"]
+        C["Core Switch: Dell X1052P\n52-port VLAN"] --> D["Perimeter: Cisco ASA + SonicWall SRA"]
+        D --> E["SOC Node: Panasonic Toughbook\nNST/SELKS + Suricata"]
+        C --> F["Network Model: Multi-zone\nASA L3 Routing - Zero Trust"]
     end
-    subgraph mgmt [Management]
-        direction TB
-        G[OOB Management: OpenGear CM4148<br>+ Rack KVM + HP TFT5600] --> A
+
+    %% Management
+    subgraph mgmt["Management"]
+        G["OOB Management: OpenGear CM4148 + Rack KVM + HP TFT5600"] --> A
     end
+
+    %% Connections
     A --> C
+
+    %% Styles
     style core fill:#f0f8ff,stroke:#007bff,stroke-width:2px
     style networking fill:#f0f8ff,stroke:#007bff,stroke-width:2px
     style mgmt fill:#f0f8ff,stroke:#007bff,stroke-width:2px
