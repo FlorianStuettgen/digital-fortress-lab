@@ -124,9 +124,9 @@ flowchart LR
         G[OOB Management: OpenGear CM4148<br>+ Rack KVM + HP TFT5600] --> A
     end
     A --> C
-    style Core Infrastructure fill:#f0f8ff,stroke:#007bff,stroke-width:2px
-    style Networking & Security fill:#f0f8ff,stroke:#007bff,stroke-width:2px
-    style Management fill:#f0f8ff,stroke:#007bff,stroke-width:2px
+    style "Core Infrastructure" fill:#f0f8ff,stroke:#007bff,stroke-width:2px
+    style "Networking & Security" fill:#f0f8ff,stroke:#007bff,stroke-width:2px
+    style "Management" fill:#f0f8ff,stroke:#007bff,stroke-width:2px
 
 
 
