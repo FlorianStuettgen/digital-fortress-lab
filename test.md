@@ -109,25 +109,24 @@ This repository details the architecture, implementation, and management of a de
 
 ```mermaid
 flowchart LR
-    subgraph "Core Infrastructure"
+    subgraph core [Core Infrastructure]
         direction TB
         A[Hypervisor: Proxmox VE<br>Dell R710] --> B[Storage: Dual EqualLogic<br>FS7610 + Avid Chassis]
     end
-    subgraph "Networking & Security"
+    subgraph networking [Networking & Security]
         direction TB
         C[Core Switch: Dell X1052P<br>52-port VLAN] --> D[Perimeter: Cisco ASA<br>+ SonicWall SRA]
         D --> E[SOC Node: Panasonic Toughbook<br>NST/SELKS + Suricata]
         C --> F[Network Model: Multi-zone<br>ASA L3 Routing - Zero Trust]
     end
-    subgraph "Management"
+    subgraph mgmt [Management]
         direction TB
         G[OOB Management: OpenGear CM4148<br>+ Rack KVM + HP TFT5600] --> A
     end
     A --> C
-    style "Core Infrastructure" fill:#f0f8ff,stroke:#007bff,stroke-width:2px
-    style "Networking & Security" fill:#f0f8ff,stroke:#007bff,stroke-width:2px
-    style "Management" fill:#f0f8ff,stroke:#007bff,stroke-width:2px
-
+    style core fill:#f0f8ff,stroke:#007bff,stroke-width:2px
+    style networking fill:#f0f8ff,stroke:#007bff,stroke-width:2px
+    style mgmt fill:#f0f8ff,stroke:#007bff,stroke-width:2px
 
 
 
