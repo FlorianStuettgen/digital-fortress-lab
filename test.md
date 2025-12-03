@@ -1,7 +1,7 @@
 # Digital Infrastructure Lab
 
 <div align="left">
-  <img src="/assets/photos/test2.jpeg" alt="Enterprise Rack Configuration" width="75%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+  <img src="/assets/photos/test2.jpeg" alt="Enterprise Rack Configuration" width="65%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
 </div>
 
 <div align="left" style="margin-top: 16px;">
