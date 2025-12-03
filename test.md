@@ -1,10 +1,10 @@
 # Digital Infrastructure Lab
 
-<div align="left">
+<div align="center">
   <img src="/assets/photos/test2.jpeg" alt="Enterprise Rack Configuration" width="65%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
 </div>
 
-<div align="left" style="margin-top: 16px;">
+<div align="center" style="margin-top: 16px;">
   <img src="https://img.shields.io/badge/Status-Active-brightgreen?style=flat&logo=proxmox&logoColor=white" alt="Lab Status: Active"/>
   <img src="https://img.shields.io/badge/Built-Solo-1182c3?style=flat&logo=github&logoColor=white" alt="Built Solo"/>
   <img src="https://img.shields.io/badge/Documentation-Comprehensive-ff8800?style=flat&logo=markdown&logoColor=white" alt="Comprehensive Documentation"/>
@@ -25,7 +25,7 @@ It provides a secure, isolated environment for designing, testing, and refining 
 
 ## At a Glance — Current as of December 2025
 
-<div align="left" style="margin-bottom: 24px; font-style: italic; color: #555; font-size: 0.9em;">
+<div align="center" style="margin-bottom: 24px; font-style: italic; color: #555; font-size: 0.9em;">
   Expanded overview of lab components, including detailed specifications, roles, and operational status for a comprehensive snapshot.
 </div>
 
