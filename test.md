@@ -115,24 +115,6 @@ The interplay here is complex, but charted here is a naive approach:
   LLM-driven analytics are reacting to the logs, anticipating attacks, and dynamically adjusting the network topology.</i></p>
 </div>
 
-## Table of Contents
-
-<details open>
-<summary><strong>Click sections to collapse/expand</strong></summary>
-
-- [Purpose & Philosophy](#purpose--philosophy)
-- [Physical Platform Gallery](#physical-platform-gallery)
-- [Logical Architecture & Zones](#logical-architecture--zones)
-- [Mermaid Traffic Flow Masterpiece](#mermaid-traffic-flow)
-- [Security & Observability Stack](#security--observability)
-- [Repository Structure](#repository-structure)
-- [Professional Impact](#professional-impact)
-- [Operations Discipline](#operations-discipline)
-- [100% Solo Operator](#solo-operator)
-- [Sanitization & Safety](#sanitization--safety)
-
-</details>
-
 ## Logical Architecture & Zones
 
 | Zone       | Trust     | Color | Purpose                              |
