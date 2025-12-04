@@ -53,79 +53,55 @@ This lab serves as a hands-on playground for experimentation, learning, and proo
 ## At a Glance as of December 2025
 
 <details open>
-<summary><div align="center" style="margin-bottom: 24px; font-style: italic; color: #555; font-size: 0.9em;">
-  Overview of lab components, including specifications, roles, and operational status for a snapshot.
-</summary>
-<table style="width: 100%; max-width: 1200px; margin: 0 auto; border-collapse: separate; border-spacing: 0 12px; font-family: Arial, sans-serif;">
-  <thead>
-    <tr style="background-color: #f0f4f8; color: #333;">
-      <th style="padding: 12px 16px; text-align: left; border-radius: 6px 0 0 6px; font-weight: 600;">Component</th>
-      <th style="padding: 12px 16px; text-align: left; font-weight: 600;">Specification</th>
-      <th style="padding: 12px 16px; text-align: left; font-weight: 600;">Description</th>
-      <th style="padding: 12px 16px; text-align: left; border-radius: 0 6px 6px 0; font-weight: 600;">Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr style="background-color: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-      <td style="padding: 12px 16px; border-radius: 6px 0 0 6px;">Hypervisor</td>
-      <td style="padding: 12px 16px;">Proxmox VE on Dell R710 (128 GB RAM, dual Xeon)</td>
-      <td style="padding: 12px 16px;">Serves as the foundational virtualization platform, enabling efficient VM and container management with high resource utilization and failover capabilities.</td>
-      <td style="padding: 12px 16px; border-radius: 0 6px 6px 0;">
-        <span style="background-color: #28a745; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold;">Operational and Stable</span>
-      </td>
-    </tr>
-    <tr style="background-color: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-      <td style="padding: 12px 16px; border-radius: 6px 0 0 6px;">Storage</td>
-      <td style="padding: 12px 16px;">Dual EqualLogic FS7610 + Avid 18-bay chassis</td>
-      <td style="padding: 12px 16px;">Provides scalable, high-performance NAS storage with RAID redundancy, supporting iSCSI and NFS protocols for seamless data access across the lab.</td>
-      <td style="padding: 12px 16px; border-radius: 0 6px 6px 0;">
-        <span style="background-color: #28a745; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold;">Fully Redundant</span>
-      </td>
-    </tr>
-    <tr style="background-color: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-      <td style="padding: 12px 16px; border-radius: 6px 0 0 6px;">Core Switch</td>
-      <td style="padding: 12px 16px;">Dell X1052P — 52-port, full VLAN trunking</td>
-      <td style="padding: 12px 16px;">Acts as the central Layer 2 switch, handling VLAN segmentation, PoE for devices, and high-throughput traffic management in the lab's network core.</td>
-      <td style="padding: 12px 16px; border-radius: 0 6px 6px 0;">
-        <span style="background-color: #28a745; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold;">L2 Master Operational</span>
-      </td>
-    </tr>
-    <tr style="background-color: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-      <td style="padding: 12px 16px; border-radius: 6px 0 0 6px;">Perimeter</td>
-      <td style="padding: 12px 16px;">Cisco ASA 5510/5515-X + SonicWall SRA 4200</td>
-      <td style="padding: 12px 16px;">Forms the security boundary with adaptive firewalling, VPN support, and intrusion prevention, ensuring controlled access and threat mitigation.</td>
-      <td style="padding: 12px 16px; border-radius: 0 6px 6px 0;">
-        <span style="background-color: #28a745; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold;">Hardened and Secure</span>
-      </td>
-    </tr>
-    <tr style="background-color: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-      <td style="padding: 12px 16px; border-radius: 6px 0 0 6px;">SOC Node</td>
-      <td style="padding: 12px 16px;">Panasonic Toughbook → NST/SELKS + Suricata</td>
-      <td style="padding: 12px 16px;">Dedicated security operations center node for real-time monitoring, ELK stack integration, and IDS/IPS via Suricata for deep packet analysis.</td>
-      <td style="padding: 12px 16px; border-radius: 0 6px 6px 0;">
-        <span style="background-color: #28a745; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold;">Live DPI Active</span>
-      </td>
-    </tr>
-    <tr style="background-color: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-      <td style="padding: 12px 16px; border-radius: 6px 0 0 6px;">Network Model</td>
-      <td style="padding: 12px 16px;">Multi-zone, ASA-only L3 routing</td>
-      <td style="padding: 12px 16px;">Implements a segmented, zero-trust architecture with Layer 3 routing confined to ASA devices, promoting least-privilege access and isolation.</td>
-      <td style="padding: 12px 16px; border-radius: 0 6px 6px 0;">
-        <span style="background-color: #28a745; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold;">Zero Trust Enforced</span>
-      </td>
-    </tr>
-    <tr style="background-color: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-      <td style="padding: 12px 16px; border-radius: 6px 0 0 6px;">OOB Management</td>
-      <td style="padding: 12px 16px;">OpenGear CM4148 + rack KVM + HP TFT5600</td>
-      <td style="padding: 12px 16px;">Out-of-band management console for remote access, serial console switching, and KVM-over-IP, ensuring accessibility during network outages.</td>
-      <td style="padding: 12px 16px; border-radius: 0 6px 6px 0;">
-        <span style="background-color: #28a745; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold;">Always Accessible</span>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<summary><em style="color:#555; font-size:0.9em;">Overview of lab components, including specifications, roles, and operational status for a snapshot.</em></summary>
+
+| Component       | Specification                            | Description                                                                 | Status |
+|-----------------|-----------------------------------------|----------------------------------------------------------------------------|--------|
+| Hypervisor      | Proxmox VE on Dell R710 (128 GB RAM, dual Xeon) | Foundational virtualization platform enabling efficient VM and container management with high resource utilization and failover capabilities. | **Operational and Stable** |
+| Storage         | Dual EqualLogic FS7610 + Avid 18-bay chassis | Scalable, high-performance NAS storage with RAID redundancy, supporting iSCSI and NFS. | **Fully Redundant** |
+| Core Switch     | Dell X1052P — 52-port, full VLAN trunking | Central Layer 2 switch handling VLAN segmentation, PoE, and high-throughput traffic. | **L2 Master Operational** |
+| Perimeter       | Cisco ASA 5510/5515-X + SonicWall SRA 4200 | Security boundary with adaptive firewalling, VPN support, and intrusion prevention. | **Hardened and Secure** |
+| SOC Node        | Panasonic Toughbook → NST/SELKS + Suricata | Security operations center node for real-time monitoring, ELK integration, IDS/IPS. | **Live DPI Active** |
+| Network Model   | Multi-zone, ASA-only L3 routing          | Segmented, zero-trust architecture with Layer 3 routing confined to ASA devices. | **Zero Trust Enforced** |
+| OOB Management  | OpenGear CM4148 + rack KVM + HP TFT5600 | Out-of-band management console for remote access and KVM-over-IP. | **Always Accessible** |
+
 </details>
-</div>
+
+## Physical Platform
+
+<details open>
+<summary><strong>Compute & Storage</strong></summary>
+
+<br>
+<img src="/assets/photos/Compute1.jpg" alt="R710" loading="lazy" width="100%"/>
+<img src="/assets/photos/Compute2.png" alt="EqualLogic" loading="lazy" width="100%"/>
+<img src="/assets/photos/Storage1.png" alt="Avid" loading="lazy" width="100%"/>
+
+</details>
+
+<details open>
+<summary><strong>Network & OOB Management</strong></summary>
+
+<br>
+<img src="/assets/photos/switch.jpg" loading="lazy" width="100%"/>
+<img src="/assets/photos/patch.jpg" loading="lazy" width="100%"/>
+<img src="/assets/photos/console3.jpg" loading="lazy" width="100%"/>
+<img src="/assets/photos/console1.jpg" loading="lazy" width="100%"/>
+
+</details>
+
+<details open>
+<summary><strong>Security & SOC Node</strong></summary>
+
+<br>
+<img src="/assets/photos/sec1.jpg" loading="lazy" width="100%"/>
+<img src="/assets/photos/sec3.jpg" loading="lazy" width="100%"/>
+<img src="/assets/photos/sec2.jpg" loading="lazy" width="100%"/>
+<img src="/assets/photos/monitor1.jpg" loading="lazy" width="100%"/>
+<img src="/assets/photos/monitor2.jpg" loading="lazy" width="100%"/>
+
+</details>
+
 
 <h3 align="left"><strong>With full operational maturity, the lab now operates as a dynamic, self-regulating security environment.</strong></h2>
 
@@ -158,34 +134,6 @@ The interplay here is complex, but charted here is a naive approach:
 </details>
 
 
-## Physical Platform —  
-
-<details open>
-<summary><strong>Compute & Storage</strong> — Click to collapse</summary>
-<br>
-<img src="/assets/photos/Compute1.jpg" alt="R710" loading="lazy" width="100%"/>
-<img src="/assets/photos/Compute2.png" alt="EqualLogic" loading="lazy" width="100%"/>
-<img src="/assets/photos/Storage1.png" alt="Avid" loading="lazy" width="100%"/>
-</details>
-
-<details open>
-<summary><strong>Network & OOB Management</strong></summary>
-<br>
-<img src="/assets/photos/switch.jpg" loading="lazy" width="100%"/>
-<img src="/assets/photos/patch.jpg" loading="lazy" width="100%"/>
-<img src="/assets/photos/console3.jpg" loading="lazy" width="100%"/>
-<img src="/assets/photos/console1.jpg" loading="lazy" width="100%"/>
-</details>
-
-<details open>
-<summary><strong>Security & SOC Node</strong></summary>
-<br>
-<img src="/assets/photos/sec1.jpg" loading="lazy" width="100%"/>
-<img src="/assets/photos/sec3.jpg" loading="lazy" width="100%"/>
-<img src="/assets/photos/sec2.jpg" loading="lazy" width="100%"/>
-<img src="/assets/photos/monitor1.jpg" loading="lazy" width="100%"/>
-<img src="/assets/photos/monitor2.jpg" loading="lazy" width="100%"/>
-</details>
 
 ## Logical Architecture & Zones
 
