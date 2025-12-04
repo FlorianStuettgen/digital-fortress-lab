@@ -48,11 +48,11 @@
 
 ---
 
-## **Lab Overview & Platform**
-This section integrates hardware, software, and operational details into a coherent overview, highlighting all major components in the lab environment.
+## **Lab Overview & Physical Platform**
+This section integrates hardware, software, and operational details into a cohesive overview, highlighting all major components in the environment.
 
 <details open>
-<summary><em>Expand for full component list, specifications, and operational status</em></summary>
+<summary><em> Component list, specifications, and operational status</em></summary>
 
 | Component        | Specification                            | Description                                                                 | Status |
 |-----------------|-----------------------------------------|----------------------------------------------------------------------------|--------|
@@ -66,22 +66,41 @@ This section integrates hardware, software, and operational details into a coher
 | **Lab Workstation** | Desktop PC + monitors | Administrative orchestration and monitoring of the lab environment. | 🟩 Operational |
 | **Honeypot Nodes** | Virtualized in Qubes OS AppVMs | Attack surface simulation for IDS/IPS validation. | 🟧 Active |
 
----
+</details>
 
-### Compute & Storage
-- **Dell R710** runs **Qubes OS** as a VM-centric hypervisor to enforce security domains.  
+
+### **Compute & Storage**
+
+<details open>
+<summary><em> Component list, specifications, and operational status</em></summary>  
+- **Dell R710** runs **Qubes OS**, isolating all workloads into AppVMs for management, lab experimentation, honeypots, and guest domains.  
 - **EqualLogic FS7610 + Avid 18-bay chassis** run **Proxmox VE**, hosting storage-heavy VMs, orchestration, and containerized workloads.  
-- This separation allows **compute isolation (R710/Qubes)** and **storage orchestration (EqualLogic/Avid/Proxmox)** simultaneously, maximizing security while maintaining high-performance storage and compute capabilities.  
+- This dual-hypervisor approach separates **compute isolation (Qubes OS)** from **storage orchestration (Proxmox VE)**, maximizing security while maintaining performance.
 
-### Network & OOB Management
-- Core switch Dell X1052P handles all VLANs and traffic flows.  
-- Patch panels and structured cabling maintain clean, redundant connections.  
-- Out-of-band access via OpenGear CM4148 and Rack KVM allows management of all devices even during network outages.  
+</details>
 
-### Security & SOC Node
-- Panasonic Toughbook running SELKS + Suricata provides continuous monitoring, intrusion detection, and ELK integration.  
-- SaltStack automates VM orchestration, firewall adjustments, and dynamic honeypot activation across Proxmox and Qubes domains.  
-- LLM-driven analysis interprets logs, anticipates threats, and reconfigures the network in real-time.
+
+### **Network & OOB Management**
+
+<details open>
+  
+- Dell X1052P handles all VLAN segmentation and high-throughput traffic.  
+- Patch panels and structured cabling maintain clean, redundant connectivity.  
+- Out-of-band access via OpenGear CM4148 and Rack KVM ensures management during network outages.
+
+</details>
+
+
+### **Security & SOC Node**
+
+<details open>
+  
+- Panasonic Toughbook running SELKS + Suricata provides real-time monitoring, intrusion detection, and ELK integration.  
+- SaltStack orchestrates dynamic VM placement, firewall adjustments, and honeypot activation across both Proxmox and Qubes OS domains.  
+- LLM-driven analytics interpret logs, anticipate threats, and reconfigure the network in real time.
+  
+</details>
+
 
 ---
 
@@ -90,11 +109,11 @@ This section integrates hardware, software, and operational details into a coher
   <img src="/assets/animations/lab-operations.gif" alt="Lab Operations Animation" width="100%"/>
 </div>
 
-- **Proxmox VE** hosts storage-centric workloads on EqualLogic + Avid hardware.  
-- **Qubes OS** runs on the R710 as the main experimental and security-focused hypervisor.  
+- **Proxmox VE** runs on EqualLogic + Avid hardware to host storage and containerized services.  
+- **Qubes OS** runs on R710 to isolate experimental workloads securely.  
+- SaltStack coordinates VM orchestration across Proxmox and Qubes domains, ensuring dynamic security responses and workload placement.  
 - AppVMs in Qubes separate workloads by trust: management, lab, guest, and honeypot domains.  
-- SaltStack orchestrates VMs across Proxmox and Qubes for dynamic deployment, network adjustments, and honeypot activation.  
-- LLM-driven analytics read logs, predict attacks, and reconfigure both Proxmox and Qubes VMs in real time.
+- LLM-driven analytics analyze logs and adjust the environment automatically to mitigate threats and optimize performance.
 
 ---
 
@@ -122,6 +141,7 @@ This section integrates hardware, software, and operational details into a coher
 | **SRE / Platform Engineering** | Observability, HA, DR planning, reproducibility, full-stack orchestration |
 | **DevOps & Automation**    | SaltStack orchestration, config-as-code, Qubes OS AppVM management |
 | **Technical Leadership**   | End-to-end ownership, workflow optimization, risk-aware system design |
+| **Research & Innovation**  | Experimentation with dynamic orchestration, honeypot automation, LLM integration |
 
 ---
 
