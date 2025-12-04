@@ -1,6 +1,6 @@
-<h1 align="center"><strong>EvoSec-Lab</strong></h1>
-<div align="center">
-  <img src="/assets/photos/test2.jpeg" alt="Enterprise Rack Configuration" width="60%" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"/>
+<h1 align="left"><strong>EvoSec-Lab</strong></h1>
+<div align="left">
+  <img src="/assets/photos/test2.jpeg" alt="Enterprise Rack Configuration" width="90%" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"/>
 </div>
 <div align="left" style="margin-top: 16px;">
   <img src="https://img.shields.io/badge/Status:-Active-brightgreen?style=for-the-badge&logo=proxmox&logoColor=white" alt="Lab Status: Active"/>
@@ -18,18 +18,18 @@
 
 ---
 
-<h2 align="center"><strong>What is this?</strong></h2>
+<h2 align="left"><strong>What is this?</strong></h2>
 <div align="left">
 
-**EvoSec-Lab** is an isolated design and testing build for **Network Topologies**, **Security Measures** & **Project Controls Workflows**.  
+**EvoSec-Lab** is an isolated design and testing build for Network Topologies, Security Measures & **Project Controls Workflows**.  
 
-**Enterprise-grade hardware**, **Complex network topologies**, & **Robust workflows** integrated seamlessly.  
+Enterprise-grade hardware, **Complex** network topologies, & Robust workflows integrated seamlessly.  
 
-This lab serves as a **hands-on playground for experimentation, learning, and proof-of-concept development**, combining hardware, software, and automation in realistic, production-like scenarios.
+This lab serves as a hands-on playground for experimentation, learning, and proof-of-concept development, combining hardware, software, and automation in realistic, production-like scenarios.
 
 ---
 
-<h2 align="center"><strong>🔹 Key Highlights:</strong></h2>
+<h2 align="left"><strong>Key Highlights:</strong></h2>
 <details open>
 <summary>Enterprise-Grade Simulation</summary>
 Realistic network environments featuring racks, switches, and firewalls designed to mirror production-grade infrastructures.
@@ -62,11 +62,10 @@ Detailed notes, diagrams, and procedures ensuring all setups are transparent, re
 
 ## At a Glance — Current as of December 2025
 
-<div align="center" style="margin-bottom: 24px; font-style: italic; color: #555; font-size: 0.9em;">
-  Expanded overview of lab components, including detailed specifications, roles, and operational status for a comprehensive snapshot.
-</div>
-
-
+<details open>
+<summary><div align="center" style="margin-bottom: 24px; font-style: italic; color: #555; font-size: 0.9em;">
+  Overview of lab components, including specifications, roles, and operational status for a snapshot.
+</summary>
 <table style="width: 100%; max-width: 1200px; margin: 0 auto; border-collapse: separate; border-spacing: 0 12px; font-family: Arial, sans-serif;">
   <thead>
     <tr style="background-color: #f0f4f8; color: #333;">
@@ -135,21 +134,21 @@ Detailed notes, diagrams, and procedures ensuring all setups are transparent, re
     </tr>
   </tbody>
 </table>
+</details>
+</div>
 
-
-
-
-<div align="center" style="margin-bottom: 24px; font-style: italic; color: #555; font-size: 0.9em;">
-With full operational maturity, the lab now operates as a dynamic, self-regulating security environment. Application VMs run critical services on isolated VLANs, while honeypots and tar pits detect and slow threats. SaltStack orchestrates real-time network adjustments, moving VMs and activating traps as needed, while LLM-driven analytics process logs to anticipate attacks and adjust topology. The interplay here is complex, but charted here is a naive approach:
+  
+<div align="left" style="margin-bottom: 24px; font-style: italic; color: #555; font-size: 0.9em;">
+<details>
+<summary>With full operational maturity, the lab now operates as a dynamic, self-regulating security environment. The interplay here is complex, but charted here is a naive approach:</summary>
 </div>
 
 <div align="center">
-  <h3>🚀 Digital Infrastructure Lab</h3>
   <img src="https://github.com/FlorianStuettgen/digital-infrastructure-lab/blob/main/assets/photos/diagram.svg" alt="System Diagram" width="1000"/>
-  <p><i>Full system architecture showing compute, storage, and network topology</i></p>
+  <p><i>Full system architecture showing compute, storage, and network topology. Application VMs run critical services on isolated VLANs, while honeypots and tar pits detect and slow threats. SaltStack orchestrates real-time network adjustments, moving VMs and activating traps as needed, while LLM-driven analytics react to the logs to anticipate attacks and dynamically adjust the network topology.</i></p>
 </div>
 
-
+</details>
 
 
 
@@ -196,24 +195,7 @@ With full operational maturity, the lab now operates as a dynamic, self-regulati
 
 </details>
 
-## Purpose & Philosophy
-
-This lab exists to **break things safely, document everything, and level-up**.
-
-- Model real enterprise networks at 1/1000th the cost  
-- Prototype firewall policies that survive red-team scrutiny  
-- Feed honeypots to the internet and reverse-engineer attacks  
-- Practice change management as if auditors were watching  
-- Build observability that actually works  
-
-~~A rack of old gear~~ → **A living, breathing portfolio masterpiece**
-
-**Key Definitions**  
-**Lab** :: Controlled environment for high-signal R&D  
-**Operator** :: One human, infinite coffee  
-**End State** :: Reproducible from this repo in <48 hours
-
-## Physical Platform — Rack Porn Gallery
+## Physical Platform —  
 
 <details open>
 <summary><strong>Compute & Storage</strong> — Click to collapse</summary>
@@ -253,46 +235,7 @@ This lab exists to **break things safely, document everything, and level-up**.
 | Honeypots  | Low       | Red   | Attack surface bait                  |
 | Guest      | Lowest    | Black | Untrusted devices                    |
 
-### Traffic Flow — Mermaid Masterpiece
 
-```mermaid
-graph TD
-    subgraph "Internet"
-        EXT[Internet<br>Scans • Bots • Script Kiddies] 
-    end
-    subgraph "Perimeter"
-        ASA[ASA Outside<br>Cisco Firepower]
-        SRA[SonicWall SRA<br>VPN Gateway]
-    end
-    subgraph "Trusted"
-        MGMT[Management Zone]
-        CORE[Core Zone]
-        DMZ[DMZ Zone]
-        LAB[Lab Zone]
-        HONEY[Honeypots]
-        GUEST[Guest Zone]
-    end
-    subgraph "Observability"
-        SOC[SOC Node<br>Suricata + SELKS]
-    end
-
-    EXT -->|Controlled| ASA
-    ASA --> DMZ & CORE & LAB & GUEST
-    ASA --> SRA --> MGMT
-    HONEY --> ASA
-    SOC -.->|SPAN + Syslog| ASA & DMZ & HONEY
-
-    classDef danger fill:#ff5555,stroke:#c00,color:white
-    classDef secure fill:#55ff55,stroke:#080,color:black
-    classDef neutral fill:#5555ff,stroke:#00c,color:white
-    class EXT,HONEY danger
-    class MGMT,CORE secure
-    class DMZ,LAB,GUEST,SRA neutral
-    class SOC fill:#ffff55,stroke:#aa0,color:black
-
-## Repository Structure
-
-```bash
 digital-infrastructure-lab/
 ├── docs/                  # Architecture deep-dives & runbooks
 ├── diagrams/              # Mermaid + exported Visio diagrams
@@ -305,7 +248,7 @@ Recommended starting point → docs/00_overview.md
 
 ### Block 9 – Professional Impact (Portfolio Gold)
 
-```markdown
+``markdown
 ## Professional Impact — This Is Portfolio Gold
 
 | Discipline                | Real-World Skills Demonstrated                                      |
