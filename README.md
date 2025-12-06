@@ -1,9 +1,12 @@
-<img width="452" height="170" alt="ChatGPT Image Dec 5, 2025, 05_22_47 PM" src="https://github.com/user-attachments/assets/c35d9192-3736-40ba-9d59-d2660507c0c2" />
-</div> 
+<div align="center">
 
+<img width="452" height="170" alt="ChatGPT Image Dec 5, 2025, 05_22_47 PM" src="https://github.com/user-attachments/assets/c35d9192-3736-40ba-9d59-d2660507c0c2" />
+ 
 ---
 
 ##  Welcome to EvoSec
+
+</div>
 
 EvoSec is a cybersecurity research lab built for experimentation and operational analysis. This exciting new platform brings together honeypots, intrusion detection, automation, and monitoring into a unified environment, enabling practical testing and innovation. 
 
@@ -12,7 +15,9 @@ Visit the wiki for a detailed overview of EvoSec’s architecture, components, a
 
 ---
 
-##  Key Features 
+<div align="center">
+
+##  Key Features: 
 
 | Feature | Description |
 |:------:|:-----------|
@@ -23,6 +28,7 @@ Visit the wiki for a detailed overview of EvoSec’s architecture, components, a
 | **Full Observability** | Monitoring and dashboards for intrusion detection and logs provide actionable insights. |
 | **Zero-Trust Security** | Compartmentalized VMs, automated threat response, and SOC integration enforce strict operational security. |
 
+</div>
 
 ---
 
