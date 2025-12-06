@@ -37,21 +37,20 @@ Visit the wiki for a detailed overview of EvoSec’s architecture, components, a
 <div align="left">
 
 <details open>
-  <summary><strong>Jump to:</strong></summary>
+  <summary><strong>📚 EvoSec-Lab Wiki Table of Contents</strong></summary>
 
-   [Architecture](Architecture) – Network design, trust zones, and top-level infrastructure  
-   [Hardware](Hardware) – Servers, storage, networking, and SOC devices  
-   [Software Stack](Software%20Stack) – Hypervisors, OS templates, orchestration, and monitoring tools  
-   [Network Topology](Network%20Topology) – VLANs, traffic flows, and dynamic orchestration  
-   [CI/CD & Automation](CI%2FCD%20%26%20Automation) – Pipelines, IaC, and LLM integration  
-   [Monitoring & Telemetry](Monitoring%20%26%20Telemetry) – Metrics, dashboards, and SOC workflow  
-   [Security Model](Security%20Model) – Zero-trust zones, isolation, and automated security policies  
-   [Use Cases](Use%20Cases) – Real-world applications and demonstrations  
-   [Roadmap](Roadmap) – Planned enhancements, expansions, and vision  
-   [Appendix](Appendix) – References, scripts, diagrams, and configuration notes
+- [01 – Architecture](https://github.com/FlorianStuettgen/EvoSec/wiki/01-%E2%80%90-Architecture)
+- [02 – Hardware](https://github.com/FlorianStuettgen/EvoSec/wiki/02-%E2%80%90-Hardware)
+- [03 – Software Stack](https://github.com/FlorianStuettgen/EvoSec/wiki/03-%E2%80%90-Software-Stack)
+- [04 – Network Topology](https://github.com/FlorianStuettgen/EvoSec/wiki/04-%E2%80%90-Network-Topology)
+- [05 – CI/CD & Automation](https://github.com/FlorianStuettgen/EvoSec/wiki/05-%E2%80%90-CI-CD-&-Automation)
+- [06 – Monitoring & Telemetry](https://github.com/FlorianStuettgen/EvoSec/wiki/06-%E2%80%90-Monitoring-&-Telemetry)
+- [07 – Security Model](https://github.com/FlorianStuettgen/EvoSec/wiki/07-%E2%80%90-Security-Model)
+- [08 – Use Cases](https://github.com/FlorianStuettgen/EvoSec/wiki/08-%E2%80%90-Use-Cases)
+- [09 – Roadmap](https://github.com/FlorianStuettgen/EvoSec/wiki/09-%E2%80%90-Roadmap)
+- [10 – Appendix](https://github.com/FlorianStuettgen/EvoSec/wiki/10-%E2%80%90-Appendix)
 
 </details>
-
 </div>
 
 ---
