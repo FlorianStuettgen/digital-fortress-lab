@@ -7,7 +7,7 @@
 
 EvoSec is a cybersecurity research lab designed for experimentation and operational analysis. The platform brings together honeypots, intrusion detection, automation, and monitoring into a unified environment, enabling practical testing and innovation. 
 
-This wiki provides an overview of EvoSec’s architecture, components, and applications.
+This wiki provides an overview of EvoSec’s architecture, components, and experiments:
 [EvoSec-Lab Wiki](https://github.com/FlorianStuettgen/EvoSec/wiki).
 
 ---
