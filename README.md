@@ -15,11 +15,11 @@ This wiki provides an overview of EvoSec’s architecture, components, and appli
 
 | Feature | Description |
 |:------:|:-----------|
-| **Enterprise-Grade Infrastructure** | High-performance servers, storage, and networking for advanced research and experimentation. |
-| **Segregated Lab Zones** | VLANs create isolated spaces for honeypots, tar pits, DMZs, and management networks and flexible testing. |
-| **AI-Driven Automation** | Large language models orchestrate network, security, and lab operations in real time for rapid responses. |
-| **Automated Workflows** | Pipelines streamline VM provisioning, software deployment, and configuration management at scale. |
-| **Full Observability** | Monitoring and dashboards for intrusion detection and log aggregation provide actionable insights across the environment. |
+| **Enterprise-Grade** | High-performance servers, storage, and networking for advanced research and experimentation. |
+| **Segregated Zones** | VLANs create isolated spaces for honeypots, tar pits, DMZs, and management networks for flexible testing. |
+| **AI-Driven** | Large language models orchestrate network, security, and lab operations in real time for rapid responses. |
+| **Automated** | Pipelines streamline VM provisioning, software deployment, and configuration management at scale. |
+| **Full Observability** | Monitoring and dashboards for intrusion detection and logs provide actionable insights. |
 | **Zero-Trust Security** | Compartmentalized VMs, automated threat response, and SOC integration enforce strict operational security. |
 
 
@@ -116,7 +116,7 @@ By bringing together data from multiple sources, EvoSec turns raw information in
 
 ![test2](https://github.com/user-attachments/assets/7388aa89-6603-4772-b960-438a4a78339b)
 
-EvoSec combines enterprise-grade infrastructure, AI-driven automation, and security making it ideal for professional research and educational use.
+EvoSec combines enterprise-grade infrastructure, AI-driven automation, and security. Ideal for professional research and educational use.
 
 </div>
 
