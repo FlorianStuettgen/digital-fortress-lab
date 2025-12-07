@@ -1,74 +1,34 @@
-# Universal Lab Base-Policy (Enhanced & Enriched Version)
+# 02 Interface Segmentation & VLAN Mapping
 
-This document provides a **highly comprehensive, professional lab configuration** for Cisco ASA 5510, ASA 5515-X, and SonicWall 4200 firewalls. It is designed for enterprise-grade labs, integrating advanced security, monitoring, segmentation, NAT, VPNs, IPS/IDS, and best practices.
+## Objective
 
----
-
-## 1. Hostname, Domain, and Management Access
-
-**Objective:** Secure admin access, enforce role-based authentication, enable logging and auditing.
-
-**ASA Example:**
-
-```
-hostname LAB-FW
-domain-name lab.local
-enable password <ENCRYPTED_PASSWORD> privilege 15
-ssh 192.168.1.0 255.255.255.0 inside
-ssh version 2
-ssh timeout 120
-aaa authentication ssh console LOCAL
-http 192.168.1.0 255.255.255.0 inside
-snmp-server enable traps snmp
-snmp-server host inside 192.168.1.20 community <COMMUNITY_STRING>
-logging enable
-logging buffered informational
-logging trap informational
-logging host inside 192.168.1.10
-logging host inside 192.168.1.15 transport udp port 514
-```
-
-**SonicWall Example:**
-
-```
-configure
-set hostname LAB-FW
-set admin-password <STRONG_PASSWORD>
-set admin-management enable https ssh
-set admin-management-interface X4
-set snmp enable
-set snmp-community <COMMUNITY_STRING>
-set snmp-traps enable
-set logging enable
-set logging host 192.168.1.10
-set syslog enable
-set syslog-host 192.168.1.15 port 514
-```
-
-**Additional Best Practices:**
-
-* Enforce MFA for management if supported
-* Restrict admin access to dedicated management VLAN
-* Enable login banners and audit logging
+Design and implement secure and structured network segmentation across the lab environment. Isolate zones, reduce attack surface, simplify monitoring, and enforce least-privilege access between lab, production, and management networks.
 
 ---
 
-## 2. Interface Segmentation & VLAN Mapping
+## 1. Zone Definitions and Security Levels
 
-**Objective:** Isolate zones, prevent lateral movement, simplify monitoring.
+| Zone       | ASA Interface | SonicWall Interface | Security Level | Purpose               | VLAN / Notes  |
+| ---------- | ------------- | ------------------- | -------------- | --------------------- | ------------- |
+| Outside    | G0/0          | X0                  | 0              | Untrusted Internet    | VLAN 10       |
+| Inside     | G0/1          | X1                  | 100            | Trusted LAN           | VLAN 20       |
+| DMZ        | G0/2          | X2                  | 50             | Semi-trusted Services | VLAN 30       |
+| VPN        | G0/3          | X3                  | 70             | Remote Access         | VPN Subnet    |
+| Management | G0/4          | X4                  | 90             | Admin only            | Isolated VLAN |
+| Lab/Dev    | G0/5          | X5                  | 60             | Testing & Development | VLAN 40       |
 
-| Zone       | ASA Interface | SonicWall Interface | Security Level | Purpose               | VLAN / Notes |
-| ---------- | ------------- | ------------------- | -------------- | --------------------- | ------------ |
-| Outside    | G0/0          | X0                  | 0              | Untrusted Internet    | VLAN 10      |
-| Inside     | G0/1          | X1                  | 100            | Trusted LAN           | VLAN 20      |
-| DMZ        | G0/2          | X2                  | 50             | Semi-trusted Services | VLAN 30      |
-| VPN        | G0/3          | X3                  | 70             | Remote Access         | VPN subnet   |
-| Management | G0/4          | X4                  | 90             | Admin only            | Isolated     |
-| Lab/Dev    | G0/5          | X5                  | 60             | Testing & Dev Zone    | VLAN 40      |
+**Best Practices:**
 
-**ASA CLI Example:**
+* Assign security levels to enforce traffic rules (higher security cannot initiate traffic to lower unless explicitly allowed).
+* Use descriptive names and document all interfaces.
+* Keep lab/dev traffic fully isolated from production networks.
+* Ensure management VLAN is restricted and monitored.
 
-```
+---
+
+## 2. ASA Interface Configuration Examples
+
+```bash
 interface GigabitEthernet0/0
  nameif outside
  security-level 0
@@ -100,9 +60,11 @@ interface GigabitEthernet0/5
  ip address 192.168.5.1 255.255.255.0
 ```
 
-**SonicWall CLI Example:**
+---
 
-```
+## 3. SonicWall Interface Configuration Examples
+
+```bash
 interface X0 name outside ip dhcp
 interface X1 name inside ip 192.168.1.1/24
 interface X2 name dmz ip 192.168.2.1/24
@@ -111,212 +73,62 @@ interface X4 name management ip 192.168.4.1/24
 interface X5 name lab ip 192.168.5.1/24
 ```
 
-**Best Practices:**
-
-* Tag VLANs on trunk ports
-* Isolate lab/dev traffic from production
-* Apply inter-zone firewall rules based on risk levels
-
 ---
 
-## 3. NAT Policy (Dynamic & Static)
+## 4. VLAN Tagging & Trunking
 
-**ASA Example:**
-
-```
-object network obj_any
- subnet 0.0.0.0 0.0.0.0
- nat (inside,outside) dynamic interface
-
-object network obj_dmz
- subnet 192.168.2.0 255.255.255.0
- nat (dmz,outside) dynamic interface
-
-object network obj_vpn
- subnet 192.168.3.0 255.255.255.0
- nat (vpn,outside) dynamic interface
-
-object network obj_lab
- subnet 192.168.5.0 255.255.255.0
- nat (lab,outside) dynamic interface
-
-! NAT Exemption
-nat (inside,vpn) 0 access-list inside_vpn_no_nat
-access-list inside_vpn_no_nat extended permit ip 192.168.1.0 255.255.255.0 192.168.3.0 255.255.255.0
-```
-
-**SonicWall Example:**
-
-```
-nat-policy add from X1 to X0 src any dst any service any
-nat-policy add from X2 to X0 src any dst any service any
-nat-policy add from X3 to X0 src any dst any service any
-nat-policy add from X5 to X0 src any dst any service any
-nat-policy add from X1 to X3 src 192.168.1.0/24 dst 192.168.3.0/24 service any no-nat
-```
+**Purpose:** Allow multiple VLANs across shared physical links while maintaining isolation.
 
 **Best Practices:**
 
-* Combine dynamic NAT with static for DMZ servers
-* Exclude VPN/management subnets from NAT
-* Audit NAT rules regularly
+* Use 802.1Q trunking for switches connecting multiple zones.
+* Tag VLANs on all trunk ports; untagged ports should be assigned to specific access VLANs.
+* Ensure VLAN IDs are consistent across ASA, SonicWall, and switches.
+* Implement PVLANs for additional micro-segmentation if required.
+* Restrict VLAN propagation to only the necessary switches.
+* Apply ACLs at VLAN boundaries for granular control.
 
 ---
 
-## 4. ACL / Firewall Rules (Granular)
-
-**ASA Example:**
-
-```
-! Inside to Outside
-access-list inside_access extended permit ip any any
-
-! Inside to DMZ
-access-list inside_dmz extended permit ip any 192.168.2.0 255.255.255.0
-
-! DMZ to Outside
-access-list dmz_access extended permit tcp any any eq 80
-access-list dmz_access extended permit tcp any any eq 443
-
-! VPN to Internal
-access-list vpn_access extended permit ip 192.168.3.0 255.255.255.0 any
-
-! Management access
-access-list management_access extended permit ip 192.168.4.0 255.255.255.0 any
-
-! Apply ACLs to interfaces
-access-group inside_access in interface inside
-access-group inside_dmz in interface inside
-access-group dmz_access in interface dmz
-access-group vpn_access in interface vpn
-access-group management_access in interface management
-```
-
-**SonicWall Example:**
-
-```
-access-rule add name "Inside-to-DMZ" from X1 to X2 action allow service any
-access-rule add name "Inside-to-Outside" from X1 to X0 action allow service any
-access-rule add name "VPN-to-Internal" from X3 to X1 action allow service any
-access-rule add name "VPN-to-DMZ" from X3 to X2 action allow service any
-access-rule add name "Management-to-All" from X4 to any action allow service any
-```
+## 5. Inter-Zone Traffic Control
 
 **Best Practices:**
 
-* Use object groups for networks and services
-* Apply principle of least privilege
-* Document each ACL with purpose and owner
+* Enforce firewall policies between zones; higher-security zones should restrict access to lower-security zones.
+* Lab/dev traffic should not reach production or management unless explicitly allowed.
+* DMZ should have tightly controlled access to internal networks and monitored for anomalies.
+* VPN users should have segmented access based on roles and project requirements.
+* Implement logging for all inter-zone traffic for auditing.
+* Use object groups to simplify rules and policy management.
 
 ---
 
-## 5. VPN Setup (Site-to-Site & Remote Access)
+## 6. Redundancy & High Availability
 
-**ASA Example:**
+**Purpose:** Ensure resilient network operations in the lab environment.
 
-```
-crypto ikev1 enable outside
-crypto ikev1 policy 10
- authentication pre-share
- encryption aes
- hash sha
- group 2
- lifetime 86400
-crypto ipsec ikev1 transform-set LAB-TRANSFORM esp-aes esp-sha-hmac
-crypto map VPN-MAP 10 ipsec-isakmp
- set peer <PEER_IP>
- set transform-set LAB-TRANSFORM
- match address vpn_access
-interface outside
- crypto map VPN-MAP
-```
+**Recommendations:**
 
-**SonicWall Example:**
-
-```
-vpn add name LAB-VPN policy ikev2 remote <PEER_IP> preshared-key <KEY> local-ip 192.168.3.1 remote-subnet 192.168.1.0/24,192.168.2.0/24
-```
-
-**Best Practices:**
-
-* Use strong encryption (AES-256, SHA2)
-* Enable split tunneling for lab networks
-* Regularly rotate pre-shared keys
+* Configure redundant ASA/Firewall pairs with failover where supported.
+* Use redundant uplinks with proper spanning-tree or routing configuration.
+* Maintain synchronized VLAN and interface configurations across redundant devices.
+* Test failover regularly to validate segmentation and access policies.
 
 ---
 
-## 6. IPS/IDS & Advanced Threat Protection
+## 7. Documentation & Lab Inventory
 
-**ASA Example:**
-
-```
-threat-detection basic-threat
-threat-detection statistics
-! Enable URL filtering if licensed
-```
-
-**SonicWall Example:**
-
-```
-set security-services enable
-set ips enable
-set gateway-anti-virus enable
-set gateway-anti-spyware enable
-```
-
-**Best Practices:**
-
-* Enable IPS/IDS on external and DMZ interfaces
-* Regularly update threat signatures
-* Monitor alerts and integrate with SIEM
+* Maintain a **network diagram** showing all interfaces, zones, and VLAN IDs.
+* Keep a **VLAN-to-interface mapping table** for quick reference.
+* Document **interface IPs, subnets, and usage**.
+* Record changes in a **change-control log** to track interface and VLAN modifications.
+* Include **ACL references and NAT interactions** relevant to each zone.
 
 ---
 
-## 7. Logging, Monitoring & SNMP
+## References
 
-**ASA Example:**
-
-```
-logging enable
-logging buffered informational
-logging trap informational
-logging host inside 192.168.1.10
-logging host inside 192.168.1.15 transport udp port 514
-snmp-server enable traps snmp
-snmp-server host inside 192.168.1.20 community <COMMUNITY_STRING>
-```
-
-**SonicWall Example:**
-
-```
-logging enable
-logging set level informational
-logging host 192.168.1.10
-snmp enable
-snmp-traps enable
-```
-
-**Best Practices:**
-
-* Centralized logging to SIEM
-* Configure alerts for critical events
-* Maintain log retention policies
-
----
-
-## 8. Security Hardening & Best Practices
-
-* Disable unused services and interfaces
-* Enforce SSH/HTTPS management only
-* Enable anti-spoofing and IP verification
-* Implement strong enable/admin passwords
-* Configure session timeouts and login lockouts
-* Apply firmware updates and patches regularly
-* Use object grouping and granular ACLs
-* Enable IDS/IPS, Anti-Virus, and Anti-Spyware
-* Enable rate-limiting on external interfaces
-* Enable logging, syslog, SNMP traps for monitoring
-* Regularly backup configuration and snapshots
-* Isolate management, VPN, DMZ, and production zones
-* Conduct lab testing in isolated environments
-* Document all policies and maintain a versioned policy repository
+* Cisco ASA 5510/5515-X Configuration Guides
+* SonicWall NSa Series Security Configuration Guides
+* NIST Cybersecurity Framework – Network Segmentation
+* CIS Benchmarks for Firewall and VLAN Configuration
