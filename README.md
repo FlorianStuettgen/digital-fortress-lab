@@ -59,7 +59,7 @@ SOC_Replay provides a comprehensive environment for cybersecurity research exper
 
 ```mermaid
 graph LR
-    A["SOC_Replay-Lab Environment"] --> B["Multi-VM Experiments"]
+    A["SOC_Replay Environment"] --> B["Multi-VM Experiments"]
     A --> C["Containerized Services"]
     A --> D["Hypervisor Snapshots"]
 
